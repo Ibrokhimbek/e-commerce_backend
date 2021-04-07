@@ -1,0 +1,38 @@
+extends layout
+
+block content
+        body 
+            nav.nav.bg-dark.p-3
+                a.nav-link.active.text-light(href='/') Asosiy
+                a.nav-link.text-light(href='/add') Admin
+
+            .container.pt-5
+                h1= title
+
+                form(action="" method="POST" enctype="multipart/form-data")
+                    .form-group.pt-2
+                        label(for='title') Title
+                        input#title.form-control(type='text' placeholder='Product title' name="title")
+                    .form-group.pt-2
+                        label(for='price') Price
+                        input#price.form-control(type='number' placeholder='Price' name="price")
+                    .form-group.pt-2
+                        label(for='sale') Sale
+                        input#sale.form-control(type='number' placeholder='Sale' name="sale")
+                    .form-group.pt-2
+                        label(for='like') Like
+                        input#like.form-control(type='number' placeholder='Like' name="like")
+                    .form-group.pt-2
+                        label(for='category') Category
+                        select.form-select#category(name="category")
+                            option(selected='') Open this select menu
+                            option(value='Car') Car
+                            option(value='Home') Home
+                            option(value='Work') Work
+                    .form-group.pt-2
+                        label(for='comments') Comments
+                        textarea#comments.form-control(name="comments" placeholder='Comments')
+                    .form-group.pt-2
+                        label(for='photo') Photo
+                        input#photo.form-control(name="photo" type='file' placeholder='Photo')
+                    button.btn.btn-primary.mt-4.mb-5(type='submit') Submit

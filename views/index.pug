@@ -1,0 +1,30 @@
+extends layout 
+
+block content
+    body 
+        nav.nav.bg-dark.p-3
+            a.nav-link.active.text-light(href='/') Asosiy
+            a.nav-link.text-light(href='/add') Admin
+
+        .container.pt-5 
+            h1= title
+
+        .container 
+            .row 
+                each db in datas
+                    .col-4.p-0.product
+                        .product_img
+                            img(alt='fsaf' width='280px' height='395px' src=`${db.photo}`)
+                            span.saleing= db.sale
+                        span.product_caption.text-center= db.title
+                        span.product_description.text-center= db.dateNow.toDateString()
+                        .rate_more
+                            h6
+                                | Price: 
+                                span= `$${db.price}`
+                            h6
+                                | Sale_price: 
+                                span.sale_price= `$${db.price - (db.price * db.sale / 100)}`
+                            h6
+                                | Category: 
+                                span= db.category 
