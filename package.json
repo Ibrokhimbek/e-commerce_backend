@@ -1,0 +1,27 @@
+{
+  "name": "e-commerce_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ibrokhimbek/e-commerce_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ibrokhimbek/e-commerce_backend/issues"
+  },
+  "homepage": "https://github.com/Ibrokhimbek/e-commerce_backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "multer": "^1.4.2",
+    "pug": "^3.0.2"
+  }
+}
