@@ -4,11 +4,27 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   DbProduct.find({}, (err, data) => {
-    console.log(data)
     res.render("index", {
       title: "Bosh sahifa",
       datas: data,
     });
+  });
+});
+
+router.get("/search", (req, res) => {
+  let { search } = req.query;
+  console.log(search);
+
+  DbProduct.find({ title: search }, (err, data) => {
+    if(data = []) {
+      res.redirect('/')
+    }else {
+      res.render("index", {
+        title: "Bosh sahifa",
+        datas: data,
+      });
+    }
+    
   });
 });
 

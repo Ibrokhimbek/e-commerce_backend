@@ -5,6 +5,10 @@ block content
         nav.nav.bg-dark.p-3
             a.nav-link.active.text-light(href='/') Asosiy
             a.nav-link.text-light(href='/add') Admin
+            form.form-inline.my-2.my-lg-0.d-flex.mr-3(action="/search" method="")
+                input.form-control.mr-sm-2(type='text' placeholder='Search' name="search")
+                button.btn.btn-success.my-2.my-sm-0.ml-3(type='submit') Search
+
 
         .container.pt-5 
             h1= title
