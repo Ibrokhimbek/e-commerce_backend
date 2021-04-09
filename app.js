@@ -39,7 +39,7 @@ app.use(express.json());
 // Setting static folder
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static("uploads"));
 
 app.use('/', rIndex);
 app.use('/add', rAdd);

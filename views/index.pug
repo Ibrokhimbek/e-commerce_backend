@@ -14,7 +14,7 @@ block content
                 each db in datas
                     .col-4.p-0.product
                         .product_img
-                            img(alt='fsaf' width='280px' height='395px' src=`${db.photo}`)
+                            img(alt='' width='280px' height='395px' src= db.photo)
                             span.saleing= db.sale
                         span.product_caption.text-center= db.title
                         span.product_description.text-center= db.dateNow.toDateString()

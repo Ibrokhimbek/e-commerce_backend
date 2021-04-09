@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   DbProduct.find({}, (err, data) => {
+    console.log(data)
     res.render("index", {
       title: "Bosh sahifa",
       datas: data,

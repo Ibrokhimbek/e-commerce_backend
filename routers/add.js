@@ -5,9 +5,7 @@ const path = require("path");
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
+  destination: './uploads',
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
@@ -36,15 +34,15 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", upload.single("photo"), async (req, res) => {
-  const db = await new DbProduct({
+router.post("/", upload.single("photo"), (req, res) => {
+  const db = new DbProduct({
     title: req.body.title,
     price: req.body.price,
     like: req.body.like,
     category: req.body.category,
-    photo: req.body.photo,
     comments: req.body.comments,
     sale: req.body.sale,
+    photo: req.file.path,
   });
 
   db.save((err) => {
