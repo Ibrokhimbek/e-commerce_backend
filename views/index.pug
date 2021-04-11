@@ -2,12 +2,18 @@ extends layout
 
 block content
     body 
-        nav.nav.bg-dark.p-3
-            a.nav-link.active.text-light(href='/') Asosiy
-            a.nav-link.text-light(href='/add') Admin
+        nav.nav.bg-dark.p-3.d-flex.justify-content-between
+            div.d-flex
+                a.nav-link.active.text-light(href='/') Asosiy
+                a.nav-link.text-light(href='/add') Admin
             form.form-inline.my-2.my-lg-0.d-flex.mr-3(action="/search" method="")
-                input.form-control.mr-sm-2(type='text' placeholder='Search' name="search")
+                input.form-control.mr-sm-2(type='text' placeholder='Search' name="search" required)
                 button.btn.btn-success.my-2.my-sm-0.ml-3(type='submit') Search
+
+            .kurs 
+                each valyuta in kurs
+                    if valyuta.Ccy=="USD"
+                        h3.text-right.text-light= `${valyuta.Ccy}: ${valyuta.Rate}`
 
 
         .container.pt-5 

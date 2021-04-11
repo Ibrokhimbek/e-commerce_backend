@@ -36,7 +36,7 @@ router.get("/", (req, res) => {
 
 router.post("/", upload.single("photo"), (req, res) => {
   const db = new DbProduct({
-    title: req.body.title,
+    title: req.body.title.toLowerCase(),
     price: req.body.price,
     like: req.body.like,
     category: req.body.category,
