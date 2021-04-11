@@ -8,4 +8,12 @@ window.addEventListener('load', () => {
             sale_price[index].style.display = 'none'
         }
     })
+
+    let cardIn = document.querySelectorAll('.product_img')
+    cardIn.forEach(element=>{
+        element.addEventListener('click', ()=> {
+            let id = element.getAttribute('cardId')
+            window.location.href = id
+        })
+    })
 })

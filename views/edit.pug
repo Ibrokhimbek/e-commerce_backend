@@ -7,19 +7,19 @@ block content
         form(action="" method="POST" enctype="multipart/form-data")
             .form-group.pt-2
                 label(for='title') Title
-                input#title.form-control(type='text' placeholder='Product title' name="title")
+                input#title.form-control(type='text' placeholder='Product title' name="title" value= db.title)
             .form-group.pt-2
                 label(for='price') Price
-                input#price.form-control(type='number' placeholder='Price' name="price")
+                input#price.form-control(type='number' placeholder='Price' name="price" value= db.price)
             .form-group.pt-2
                 label(for='sale') Sale
-                input#sale.form-control(type='number' placeholder='Sale' name="sale")
+                input#sale.form-control(type='number' placeholder='Sale' name="sale" value= db.sale)
             .form-group.pt-2
                 label(for='like') Like
-                input#like.form-control(type='number' placeholder='Like' name="like")
+                input#like.form-control(type='number' placeholder='Like' name="like" value= db.like)
             .form-group.pt-2
                 label(for='category') Category
-                select.form-select#category(name="category")
+                select.form-select#category(name="category" selected= db.category)
                     option(selected='') Open this select menu
                     option(value='Car') Car
                     option(value='Home') Home

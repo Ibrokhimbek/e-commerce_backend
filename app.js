@@ -3,7 +3,46 @@ const mongoose = require("mongoose");
 const path = require("path");
 const rIndex = require("./routers/index");
 const rAdd = require("./routers/add");
+const rProduct = require("./routers/product");
+const expressValidator = require("express-validator");
+const session = require("express-session");
+
 const app = express();
+
+// Setting Express Validator
+
+app.use(require("connect-flash")());
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(
+  expressValidator({
+    errorFormatter: (param, msg, value) => {
+      let namespace = param.split(".");
+      root = namespace.shift();
+      formParam = root;
+
+      while (namespace.length) {
+        formParams += "[" + namespace.shift() + "]";
+      }
+      return {
+        params: formParam,
+        msg: msg,
+        value: value,
+      };
+    },
+  })
+);
 
 // Setting mongoose
 
@@ -41,8 +80,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads"));
 
-app.use('/', rIndex);
-app.use('/add', rAdd);
+app.use("/", rIndex);
+app.use("/", rAdd);
+app.use("/", rProduct);
 
 app.listen(3000, () => {
   console.log("Server is running on 3000 port");

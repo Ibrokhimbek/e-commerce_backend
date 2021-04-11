@@ -11,7 +11,7 @@
 	border: 1px solid black;
   }
   
-  .product_img {
+  .product_img, .product-img {
 	width: 280px;
 	height: 395px;
 	position: relative;
@@ -44,6 +44,7 @@
 	font-weight: bold;
 	font-size: 25px;
 	color: #233f24;
+	text-transform: capitalize;
   }
   
   .product_description {
