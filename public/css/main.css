@@ -1,6 +1,6 @@
 .product {
 	width: 280px;
-	height: 550px;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

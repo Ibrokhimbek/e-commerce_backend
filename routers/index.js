@@ -24,14 +24,14 @@ router.get("/search", (req, res) => {
     fetch("http://cbu.uz/oz/arkhiv-kursov-valyut/json/")
       .then((data) => data.json())
       .then((body) => {
-        if (data === []) {
+        if (data === [] || req.query.search == "") {
           console.log(data);
           res.redirect("/");
         } else {
           res.render("index", {
             title: "Bosh sahifa",
             datas: data,
-            kurs: body
+            kurs: body,
           });
         }
       });

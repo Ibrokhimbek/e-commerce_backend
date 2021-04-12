@@ -23,3 +23,6 @@ block content
                         h6
                             | Category: 
                             span= db.category 
+                    .like.d-flex
+                        span.writeLike= db.like 
+                        span.btn.btn-success.clickLike(likeId = '/'+db.id) Like

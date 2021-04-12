@@ -119,4 +119,16 @@ router.post("/edit/:UserId", upload.single("photo"), (req, res) => {
   }
 });
 
+router.post('/:id', (req,res)=> {
+  DbProduct.findById(req.params.id, (err,data)=> {
+    if(err){
+      console.log(err)
+    }else{
+      data.like += 1
+      data.save()
+      res.send(data)
+    }
+  })
+})
+
 module.exports = router;
