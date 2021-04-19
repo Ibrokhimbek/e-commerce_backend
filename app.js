@@ -4,6 +4,7 @@ const path = require("path");
 const rIndex = require("./routers/index");
 const rAdd = require("./routers/add");
 const rProduct = require("./routers/product");
+const rUser = require("./routers/user");
 const expressValidator = require("express-validator");
 const session = require("express-session");
 
@@ -83,6 +84,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/", rIndex);
 app.use("/", rAdd);
 app.use("/", rProduct);
+app.use("/", rUser);
 
 app.listen(3000, () => {
   console.log("Server is running on 3000 port");

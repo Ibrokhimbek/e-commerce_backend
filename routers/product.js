@@ -11,7 +11,7 @@ router.get("/edit/:id", (req, res) => {
   });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/cards/:id", (req, res) => {
   DbProduct.findById(req.params.id, (err, data) => {
     res.render("product", {
       title: "Product page",
