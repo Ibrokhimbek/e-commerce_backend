@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .container.pt-3
+        h1= title
+
+        form(action="" method="POST")
+            .form-group.pt-2
+                label(for='username') Username
+                input#username.form-control(type='text' placeholder='Username' name="username")
+            .form-group.pt-2
+                label(for='password') Password
+                input#password.form-control(type='password' placeholder='Password' name="password")
+            button.btn.btn-primary.mt-4.mb-5(type='submit') Tizimga kirish

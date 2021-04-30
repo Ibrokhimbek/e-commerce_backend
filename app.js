@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const passport = require("passport");
 const rIndex = require("./routers/index");
 const rAdd = require("./routers/add");
 const rProduct = require("./routers/product");
@@ -77,9 +78,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Setting static folder
-
-app.use(express.static(path.join(__dirname, "public")));
+app.use('*/css',express.static('public/css'));
+app.use('*/js',express.static('public/js'));
+app.use('*/images',express.static('public/images'));
+// app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
+
+// Authentication
+require("./middleware/passport")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get("*", (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
 
 app.use("/", rIndex);
 app.use("/", rAdd);

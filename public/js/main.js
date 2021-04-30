@@ -9,13 +9,13 @@ window.addEventListener("load", () => {
     }
   });
 
-  let cardIn = document.querySelectorAll(".product_img");
-  cardIn.forEach((element) => {
-    element.addEventListener("click", () => {
-      let id = element.getAttribute("cardId");
-      window.location.href = id;
-    });
-  });
+  // let cardIn = document.querySelectorAll(".product_img");
+  // cardIn.forEach((element) => {
+  //   element.addEventListener("click", () => {
+  //     let id = element.getAttribute("cardId");
+  //     window.location.href = id;
+  //   });
+  // });
 
   let writeLike = document.querySelectorAll(".writeLike");
   let clickLike = document.querySelectorAll(".clickLike");

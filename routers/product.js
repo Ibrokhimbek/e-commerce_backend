@@ -22,6 +22,7 @@ router.get("/cards/:id", (req, res) => {
 
 router.get("/delete/:id", (req, res) => {
   DbProduct.deleteOne({ _id: req.params.id }, (err, data) => {
+    req.flash("danger", "Item was deleted");
     res.redirect("/");
   });
 });
