@@ -29,6 +29,9 @@ const DbProduct = new Schema({
   photo: {
     type: String,
   },
+  author: {
+    type: String
+  }
 });
 
 module.exports = mongoose.model("tovar", DbProduct);
