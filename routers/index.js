@@ -4,34 +4,37 @@ const fetch = require("node-fetch");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  DbProduct.find({}, (err, data) => {
-    fetch("http://cbu.uz/oz/arkhiv-kursov-valyut/json/")
+  DbProduct.find({}, async (err, data) => {
+    await fetch("http://cbu.uz/oz/arkhiv-kursov-valyut/json/")
       .then((data) => data.json())
-      .then((body) =>
+      .then((kurs) =>
         res.render("index", {
           title: "Bosh sahifa",
           datas: data,
-          kurs: body,
+          kurs,
         })
       );
+    // res.render("index", {
+    //   title: "Bosh sahifa",
+    //   datas: data,
+    // });
   });
 });
 
 router.get("/search", (req, res) => {
   let { search } = req.query;
 
-  DbProduct.find({ title: { $regex: search } }, (err, data) => {
+  DbProduct.find({ title: { $regex: search } }, (err, dbData) => {
     fetch("http://cbu.uz/oz/arkhiv-kursov-valyut/json/")
       .then((data) => data.json())
-      .then((body) => {
-        if (data === [] || req.query.search == "") {
-          console.log(data);
+      .then((kurs) => {
+        if (dbData === [] || req.query.search == "") {
           res.redirect("/");
         } else {
           res.render("index", {
             title: "Bosh sahifa",
-            datas: data,
-            kurs: body,
+            datas: dbData,
+            kurs,
           });
         }
       });

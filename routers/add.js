@@ -1,49 +1,18 @@
 const express = require("express");
 const DbProduct = require("../model/Product");
-const multer = require("multer");
+const upload = require("../middleware/multer").single("photo");
 const path = require("path");
 const fetch = require("node-fetch");
 const router = express.Router();
 
 const def = (req, res, next) => {
-  if(req.isAuthenticated()) {
-    next()
-  }else{
-    req.flash("danger", "Iltimos ro'yxatdan o'ting")
-    res.redirect('/user/login')
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    req.flash("danger", "Iltimos ro'yxatdan o'ting");
+    res.redirect("/user/login");
   }
 };
-
-const storage = multer.diskStorage({
-  destination: "./uploads",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  limits: {
-    fieldSize: 2 * 1024 * 1024 * 1024,
-  },
-  fileFilter: (req, file, cb) => {
-    const extname = path.extname(file.originalname);
-    if (
-      extname !== ".jpg" &&
-      extname !== ".jpeg" &&
-      extname !== ".png" &&
-      extname !== ".JPG" &&
-      extname !== ".JPEG" &&
-      extname !== ".PNG"
-    ) {
-      const err = new Error("Rasm formati to'g'ri kelmadi");
-      err.code = 404;
-      return cb(err);
-    }
-    cb(null, true);
-  },
-  preservePath: true,
-});
 
 router.get("/add", def, (req, res) => {
   fetch("http://cbu.uz/oz/arkhiv-kursov-valyut/json/")
@@ -56,7 +25,7 @@ router.get("/add", def, (req, res) => {
     });
 });
 
-router.post("/add", upload.single("photo"), (req, res) => {
+router.post("/add", upload, (req, res) => {
   req.checkBody("title", "Mahsulotning nomini kiriting").notEmpty();
   req.checkBody("price", "Mahsulotning narxini kiriting").notEmpty();
   req.checkBody("category", "Mahsulotning sinfini kiriting").notEmpty();
@@ -93,7 +62,7 @@ router.post("/add", upload.single("photo"), (req, res) => {
   }
 });
 
-router.post("/edit/:UserId", upload.single("photo"), (req, res) => {
+router.post("/edit/:UserId", upload, (req, res) => {
   req.checkBody("title", "Mahsulotning nomini kiriting").notEmpty();
   req.checkBody("price", "Mahsulotning narxini kiriting").notEmpty();
   req.checkBody("category", "Mahsulotning sinfini kiriting").notEmpty();

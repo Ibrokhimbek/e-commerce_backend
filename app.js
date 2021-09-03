@@ -12,7 +12,6 @@ const session = require("express-session");
 const app = express();
 
 // Setting Express Validator
-
 app.use(require("connect-flash")());
 app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
@@ -73,14 +72,13 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
 // Setting BodyParser
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Setting static folder
-app.use('*/css',express.static('public/css'));
-app.use('*/js',express.static('public/js'));
-app.use('*/images',express.static('public/images'));
+app.use("*/css", express.static("public/css"));
+app.use("*/js", express.static("public/js"));
+app.use("*/images", express.static("public/images"));
 // app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 
